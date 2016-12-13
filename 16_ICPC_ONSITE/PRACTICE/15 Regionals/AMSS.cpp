@@ -1,6 +1,6 @@
 /*
-Author : Ponnada Harsha Vardhan
-Institute : IIT Kharagpur
+	Author : Ponnada Harsha Vardhan
+	Institute : IIT Kharagpur
 */
 
 #include <bits/stdc++.h>
@@ -28,59 +28,60 @@ Institute : IIT Kharagpur
 #define REP(i,n) for(i=0;i<n;i++)
 using namespace std;
 
+vector<ll> fac(5005,1);
+vector<ll> inverse(5005,1);
 
-/* This function calculates (a^b)%MOD */
-ll power(ll a, ll b)
+ll power(ll a,ll b)
 {
 	if(b==0)
 		return 1;
 	if(b==1)
 		return a%MOD;
-	ll temp = pow(a,b/2);
+	ll small = power(a,b/2);
+	ll temp = (small*small)%MOD;
 	if(b%2==0)
-		return (temp*temp)%MOD;
+		return temp;
 	else
-		return (a*((temp*temp)%MOD)%MOD);
+	{
+		ll temp1 = (a*temp)%MOD;
+		return temp1;
+	}
 }
 
- 
-ll C(ll n, ll r,std::vector<ll> f)
+ll C(ll n,ll i)
 {
-	if(n==r)
+	if(n==i)
 		return 1;
-	if(r==0)
+	if(i==0)
 		return 1;
-	ll temp = power(f[r],MOD-2);
-	ll temp1 = power(f[n-r],MOD-2);
-	// out2(temp,temp1);
-	temp = (temp*temp1)%MOD;
-	out2(temp,f[n]);
-	return (f[n]*temp) % MOD;
+	ll temp = inverse[i], temp1 = inverse[n-i];
+	ll result = (temp*temp1)%MOD;
+	result = (result*fac[n])%MOD;
+	return result;
 }
 
 int main()
 {
-	// BOOST;
-	// init_temp;
+	BOOST;
+	ll_init_temp;
+	for(i=1;i<=5000;i++)
+		fac[i] = (i*fac[i-1])%MOD;
+	for(i=0;i<=5000;i++)
+		inverse[i] = power(fac[i],MOD-2);
 	cint(t);
-	vector<ll> f(5005,1);
-	for (ll i=1; i<=5002;i++)
-		f[i]= (f[i-1]*i) % MOD;
-	out(C(4,2,f));
 	while(t--)
 	{
-		ll n;
-		cin>>n;
-		ll result = 0;
-		ll mult = 26;
-		for(ll i=1;i<=n;i++)
+		cll(n);
+		ll result = 0, fac = 26;
+		ll temp;
+		for(i=1;i<=n;i++)
 		{
-			ll temp = C(n,i,f)%MOD;
+			temp = C(n,i);
 			temp = (temp*temp)%MOD;
-			// test(temp);
-			result = (result+(temp*mult)%MOD)%MOD;
-			mult = (mult*25)%MOD;
+			temp = (temp*fac)%MOD;
+			result = (result + temp)%MOD;
+			fac = (fac*25)%MOD;
 		}
-		// out(result);
-	}	
+		out(result);
+	}
 }
