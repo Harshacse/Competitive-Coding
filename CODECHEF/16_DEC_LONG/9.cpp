@@ -4,6 +4,7 @@ Institute : IIT Kharagpur
 */
 
 #include <bits/stdc++.h>
+#include <math.h>
 #define MOD 1000000007
 #define ll long long int
 #define nl cout<<'\n'
@@ -14,8 +15,8 @@ Institute : IIT Kharagpur
 #define MAXLONG 9223372036854775807 
 #define loop(i,a,n) for(i=a;i<n;i++)
 #define pb push_back
-#define init_temp int i,j,k 
-#define ll_init_temp ll i,j,k
+#define init_temp int i,j
+#define ll_init_temp ll i,j
 #define BOOST ios_base::sync_with_stdio(false);cin.tie(NULL)
 #define test(i) cout<<"check "<<i;nl
 #define cint(a) int a; cin>>a
@@ -28,8 +29,42 @@ Institute : IIT Kharagpur
 #define REP(i,n) for(i=0;i<n;i++)
 using namespace std;
 
+int LIS(int a[],int x,int y)
+{
+	int len = y-x+1,i,j;
+	std::vector<int> count(y-x+1,0);
+	count[y-x] = 1;
+	int result = 0;
+	for(i=y-x-1;i>=0;i--)
+	{
+		int temp = 0;
+		for(j=i+1;j<=y-x;j++)
+		{
+			if(a[i+x]<a[j+x])
+				temp = max(temp,count[j]);
+		}
+		count[i] = temp+1;
+		result = max(result,count[i]);
+		// out(count[i]);
+	}
+	return result;
+}
+
 int main()
 {
 	BOOST;
 	init_temp;
+	cint(t);
+	while(t--)
+	{
+		cint2(n,m);
+		int a[n];
+		for(i=0;i<n;i++)
+			cin>>a[i];
+		while(m--)
+		{
+			cint2(x,y);
+			out(LIS(a,x-1,y-1));
+		}
+	}
 }

@@ -28,8 +28,58 @@ Institute : IIT Kharagpur
 #define REP(i,n) for(i=0;i<n;i++)
 using namespace std;
 
+bool solve(int a[],int n,int c)
+{
+	int i,j,count = 0;
+	map<int,int> quiver;
+	map<int,int>::iterator it;
+	vector< vector<int> > last[n+1];
+	for(i=0;i<n;i++)
+		last[i].pb(0);
+
+	int tym = 0;
+	for(i=0;i<n;i++)
+	{
+		it = quiver.find(a[i]);
+		if(it == quiver.end())
+		{
+			tym++;
+			if(count<c)
+			{
+				quiver[a[i]] = 1;
+				last[1].pb(a[i]);
+				last[1][0]++;
+				count++;
+			}
+			else
+			{
+				int temp = (quiver.begin())->second;
+				int temp1 = last[temp][last[temp][0]];
+				last[temp][0]--;
+				quiver.erase(temp1);
+
+			}
+		}
+		else
+		{
+			quiver[a[i]] += 1;
+			last[quiver[a[i]]] = a[i];
+		}
+	}
+}
+
 int main()
 {
 	BOOST;
 	init_temp;
+	cint(t);
+	while(t--)
+	{
+		int n,m,c;
+		cin>>n>>m>>c;
+		int a[m];
+		for(i=0;i<n;i++)
+			cin>>a[i];
+		solve(a,m,c);
+	}
 }

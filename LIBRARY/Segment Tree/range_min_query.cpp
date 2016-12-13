@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <math.h>
- 
+#define INT_MAX 1000000000 
 
 class SegmentTree
 {
@@ -67,8 +67,8 @@ int main()
     for(i=0;i<n;i++)
         cin>>arr[i];
     SegmentTree Tree(arr,n);
-    int qs = 0;  
-    int qe = n-1;  
+    int qs,qe;
+    cin>>qs>>qe; 
     cout<<"    Minimum of values in range ["<<qs<<","<<qe<<"] is = "<<Tree.query(qs, qe)<<endl;
     return 0;
 }

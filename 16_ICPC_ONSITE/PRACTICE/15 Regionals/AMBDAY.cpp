@@ -30,6 +30,26 @@ using namespace std;
 
 int main()
 {
-	BOOST;
 	init_temp;
+	cint(t);
+	while(t--)
+	{
+		int x,f,h,w;
+		cin>>f>>h>>w;
+		vector<int> cuts;
+		for(i=0;i<f;i++)
+		{
+			cin>>x;
+			cuts.pb(x);
+		}
+		sort(cuts.begin(),cuts.end());
+		int res = cuts[0];
+		for(i=1;i<cuts.size();i++)
+		{
+			if(cuts[i]-cuts[i-1]<res)
+				res = cuts[i]-cuts[i-1];
+		}
+		res = min(res,w-cuts[cuts.size()-1]);
+		out(res*h);
+	}
 }

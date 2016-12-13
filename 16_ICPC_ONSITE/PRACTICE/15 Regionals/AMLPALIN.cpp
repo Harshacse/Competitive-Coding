@@ -30,6 +30,56 @@ using namespace std;
 
 int main()
 {
-	BOOST;
 	init_temp;
+	cint(t);
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		string s;
+		map<string,int> data;
+		data.clear();
+		map<string,int> :: iterator it;
+		for(i=0;i<n;i++)
+		{
+			cin>>s;
+			it = data.find(s);
+			if(it == data.end())
+				data[s] = 1;
+			else
+				data[s]++;
+		}
+		int aa = data["aa"], bb = data["bb"], ab = data["ab"], ba = data["ba"];
+		if(aa%2==0)
+		{
+			for(i=0;i<aa/2;i++)
+				cout<<"aa";
+			for(i=0;i<min(ab,ba);i++)
+				cout<<"ab";
+			for(i=0;i<bb;i++)
+				cout<<"bb";
+			for(i=0;i<min(ab,ba);i++)
+				cout<<"ba";
+			for(i=0;i<aa/2;i++)
+				cout<<"aa";
+			nl;
+		}
+		else
+		{
+			for(i=0;i<aa/2;i++)
+				cout<<"aa";
+			for(i=0;i<min(ab,ba);i++)
+				cout<<"ab";
+			for(i=0;i<bb/2;i++)
+				cout<<"bb";
+			cout<<"aa";
+			for(i=0;i<bb/2;i++)
+				cout<<"bb";
+			for(i=0;i<min(ab,ba);i++)
+				cout<<"ba";
+			for(i=0;i<aa/2;i++)
+				cout<<"aa";
+			nl;
+		}
+	}
 }
