@@ -1,6 +1,6 @@
 /*
-	Author : Ponnada Harsha Vardhan
-	Institute : IIT Kharagpur
+Author : Ponnada Harsha Vardhan
+Institute : IIT Kharagpur
 */
 
 #include <bits/stdc++.h>
@@ -28,8 +28,28 @@
 #define REP(i,n) for(i=0;i<n;i++)
 using namespace std;
 
+ll solve(ll i,ll n)
+{
+	ll a = 2*i, b =a+1;
+	ll result = 0;
+	if(a<=n)
+		result = result + 1+ solve(a,n);
+	if(b<=n)
+		result = result + 1 + solve(b,n);
+	return result;
+}
+
 int main()
 {
-	BOOST;
 	init_temp;
+	cint(t);
+	while(t--)
+	{
+		ll n,i;
+		cin>>n>>i;
+		ll result = n - solve(i,n);
+		// out(result);
+		result -= (int)(log(i)/log(2));
+		out(result);
+	}
 }

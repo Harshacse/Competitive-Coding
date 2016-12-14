@@ -103,7 +103,7 @@ int main()
 		}
 
 		// t2=clock();
-	 //    float diff ((float)t2-(float)t1);
+	 	// float diff ((float)t2-(float)t1);
 		// float seconds = diff / CLOCKS_PER_SEC;
 		// cout<<"Run time:"<<seconds<<endl;
 		

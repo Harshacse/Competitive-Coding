@@ -1,6 +1,6 @@
 /*
-	Author : Ponnada Harsha Vardhan
-	Institute : IIT Kharagpur
+Author : Ponnada Harsha Vardhan
+Institute : IIT Kharagpur
 */
 
 #include <bits/stdc++.h>
@@ -30,6 +30,39 @@ using namespace std;
 
 int main()
 {
-	BOOST;
 	init_temp;
+	cint(t);
+	while(t--)
+	{
+		int n,m,x;
+		cin>>n>>m>>x;
+		vector <ll> data(m,0);
+		for(i=0;i<n;i++)
+		{
+			ll temp;
+			cin>>temp;
+			data[temp%m]+=1;
+		}
+		vector<ll> sums(m,0);
+		sums[0] = data[0];
+		for(i=1;i<m;i++)
+			sums[i] = data[i]+sums[i-1];
+		ll answer = 0;
+		for(i=0;i<m;i++)
+		{
+			ll count = 0;
+			if(i<=x)
+			{
+				count += sums[x-i]; 
+				int temp = min(m-i,m), temp1 = min(m-i+x,m-1);
+				if(temp == m)
+					continue;
+				count += sums[temp1] - sums[temp-1];
+			}
+			else
+				count += sums[m+x-i]-sums[m-i-1];
+			answer += count*data[i];
+		}
+		out(answer);
+	}
 }

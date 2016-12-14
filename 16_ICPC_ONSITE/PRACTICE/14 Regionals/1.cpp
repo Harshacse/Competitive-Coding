@@ -1,6 +1,6 @@
 /*
-	Author : Ponnada Harsha Vardhan
-	Institute : IIT Kharagpur
+Author : Ponnada Harsha Vardhan
+Institute : IIT Kharagpur
 */
 
 #include <bits/stdc++.h>
@@ -32,4 +32,25 @@ int main()
 {
 	BOOST;
 	init_temp;
+	cint(t);
+	while(t--)
+	{
+		cint(n);
+		bool check = true;
+		vector<int> dollsize(1005,0);
+		for(i=0;i<n;i++)
+		{
+			int x;
+			cin>>x;
+			if(dollsize[x]==0)
+				dollsize[x] = 1;
+			else
+				check = false;
+		}
+		if(check)
+			cout<<"YES\n";
+		else
+			cout<<"NO\n";
+	}
+	
 }

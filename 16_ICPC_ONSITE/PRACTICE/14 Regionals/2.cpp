@@ -1,6 +1,6 @@
 /*
-	Author : Ponnada Harsha Vardhan
-	Institute : IIT Kharagpur
+Author : Ponnada Harsha Vardhan
+Institute : IIT Kharagpur
 */
 
 #include <bits/stdc++.h>
@@ -32,4 +32,22 @@ int main()
 {
 	BOOST;
 	init_temp;
+	cint(t);
+	while(t--)
+	{
+		int n,m,s,p,q;
+		cin>>n>>m>>s>>p>>q;
+		if(p==q)
+		{
+			out(s);
+			continue;
+		}
+		int temp = m/p+1;
+		s -= ((m/p)+1);
+		int virat = p*((m/p)+1),rohit = q*(m/p+1);
+		for(i=0;i<s;i++)
+		{
+
+		}
+	}
 }

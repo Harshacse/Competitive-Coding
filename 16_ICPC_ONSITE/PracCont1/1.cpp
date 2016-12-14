@@ -1,5 +1,5 @@
 /*
-	Author : Ponnada Harsha Vardhan
+	Team Name : segf
 	Institute : IIT Kharagpur
 */
 
@@ -32,4 +32,25 @@ int main()
 {
 	BOOST;
 	init_temp;
+	cint(t);
+	while(t--)
+	{
+		cint2(n,k);
+		vector<int> a(n);
+		for(i=0;i<n;i++)
+			cin>>a[i];
+		sort(a.begin(),a.end());
+		int result = MAXINT;
+		if(k==1)
+		{
+			cout<<"0\n";
+			continue;
+		}
+		for(i=0;i<=n-k;i++)
+		{
+			if(a[i+k-1]-a[i] < result)
+				result = a[i+k-1]-a[i];
+		}
+		out(result);
+	}
 }

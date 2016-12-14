@@ -1,5 +1,5 @@
 /*
-	Author : Ponnada Harsha Vardhan
+	Team Name : segf
 	Institute : IIT Kharagpur
 */
 
@@ -32,4 +32,60 @@ int main()
 {
 	BOOST;
 	init_temp;
+	cint(t);
+	while(t--)
+	{
+		int n,m,k;
+		cin>>n>>m>>k;
+		vector<int> rows(n);
+		string s;
+		for(i=0;i<n;i++)
+		{
+			cin>>s;
+			int temp = 0;
+			for(j=0;j<m;j++)
+			{
+				if(s[j] == '*')
+					temp++;
+			}
+			rows[i] = temp;
+		}
+		sort(rows.begin(),rows.end());
+		int num = 0;
+		int temo;
+		if(m%2==0)
+			temo = m/2;
+		else
+			temo = m/2+1;
+		for(i=0;i<n;i++)
+		{
+			if(num==k)
+			{
+				break;
+			}
+			if(rows[i]<temo)
+			{
+				rows[i] = m-rows[i];
+				num++;
+			}
+			else
+				break;
+		}
+		
+		if((k-num)%2==0)
+		{
+			int result = 0;
+			for(i=0;i<n;i++)
+				result += rows[i];
+			out(result);
+		}
+		else
+		{
+			sort(rows.begin(),rows.end());
+			int result = m-rows[0];
+			for(i=1;i<n;i++)
+				result += rows[i];
+			out(result);
+		}
+	}
 }
