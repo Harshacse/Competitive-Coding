@@ -40,18 +40,21 @@ void merge(int left,int mid,int right)
     {
         if(p>mid)
             a[k] = weigh[q++];
+
         else if(q>right)
         {
             a[k] = weigh[p];
             cnt[weigh[p]] += c;
             p++;
         }
+        
         else if(weigh[p] <= weigh[q])
         {
             a[k] = weigh[p];
             cnt[weigh[p]] += c;
             p++;
         }
+        
         else
         {
             a[k] = weigh[q++];
@@ -81,12 +84,14 @@ int main()
         num =0 ;
         for(i=0;i<MAX;i++)
             cnt[i] = 0;
+        
         cint(n);
         for(i=0;i<n;i++)
         {
             cin>>weigh[i];
             wc[i] = weigh[i];
         }
+        
         mergeSort(0,n-1);
         ll sum = 0;
         for(i=0;i<n;i++)

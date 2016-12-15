@@ -4,3 +4,11 @@ http://pastebin.com/Zzh1q0i9
 http://icpc.amrita.ac.in/2014/problemsets.html
 https://www.codechef.com/AMR14ROS
 Puzzles http://research.microsoft.com/en-us/um/people/leino/puzzles.html
+
+http://codeforces.com/blog/entry/20935 Trees with DP
+
+
+
+
+http://codeforces.com/blog/entry/16221 LCA,Graphs.. good source
+https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/ LCA 

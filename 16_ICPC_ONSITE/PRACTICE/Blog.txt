@@ -1,0 +1,8 @@
+http://codeforces.com/blog/entry/16221 LCA,Graphs.. good source 
+
+
+Probs:
+Distance between any two nodes
+http://codeforces.com/contest/342/problem/E
+http://acm.timus.ru/problem.aspx?space=1&num=1752
+http://acm.timus.ru/problem.aspx?space=1&num=1699

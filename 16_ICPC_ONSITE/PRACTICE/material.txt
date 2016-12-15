@@ -1,0 +1,23 @@
+Graph theory:
+
+Number Theory:
+
+Segmented Sieve:
+//Sieve of eratosthenes code lifted from Internet. Refer to link http://codeforces.com/blog/entry/7262
+
+bool v_[MAX];
+int len, sp[MAX];
+
+void Sieve(){
+	for (int i = 2; i < MAX; i += 2)	sp[i] = 2;//even numbers have smallest prime factor 2
+	for (ll i = 3; i < MAX; i += 2){
+		if (!v_[i]){
+			sp[i] = i;
+			for (ll j = i; (j*i) < MAX; j += 2){
+				if (!v_[j*i])	v_[j*i] = true, sp[j*i] = i;
+			}
+		}
+	}
+}
+
+sp[x] gives the least prime factor of x. It can be used for the prime factor decompositon of x
