@@ -1,5 +1,5 @@
 /*
-	Team Name : segf
+	Author : Ponnada Harsha Vardhan
 	Institute : IIT Kharagpur
 */
 
@@ -31,21 +31,48 @@ using namespace std;
 int main()
 {
 	BOOST;
-	int i,j,l,m;
+	init_temp;
 	cint(t);
-	int primes[5] = {2,3,5,7,11};
 	while(t--)
 	{
-		cint2(a,n);
-		cint(k);
-		vector<int> data;
-		l;
-		for(i=0;i<32;i++)
+		int n,m,k;
+		cin>>n>>m>>k;
+		vector<int> row(n,0);
+		for(i=0;i<n;i++)
 		{
-			for(j=0;j<9log(10)/log(2)+2;j++)
-			{
-				for(k=)
-			}
+			string s;
+			cin>>s;
+			for(j=0;j<m;j++)
+				if(s[j] == '*')
+					row[i]++;
+		}
+		sort(row.begin(),row.end());
+		int num = 0;
+		i = 0;
+		if(m%2==0)
+			j = m/2;
+		else 
+			j = m/2+1;
+		while(row[i]<j && num<k && i<n)
+		{
+			row[i] = m-row[i];
+			num++;
+			i++;
+		}
+		if((k-num)%2==0)
+		{
+			int result = 0;
+			for(i=0;i<n;i++)
+				result += row[i];
+			out(result);
+		}
+		else
+		{
+			sort(row.begin(),row.end());
+			int result = m-row[0];
+			for(i=1;i<n;i++)
+				result += row[i];
+			out(result);	
 		}
 	}
 }

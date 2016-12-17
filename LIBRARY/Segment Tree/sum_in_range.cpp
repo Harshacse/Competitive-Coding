@@ -1,34 +1,34 @@
 #include <iostream>
 using namespace std;
 #include <math.h>
-#define dt int
+#define int int
 
 
 //SEGMENT TREE BEGINS
 class SegmentTree
 {
     public:
-        dt *st,*arr,n;
-        dt getMid(dt s, dt e) {  return s + (e -s)/2;  }
-        dt getSumUtil(dt ss, dt se, dt qs, dt qe, dt si);
-        void update_query(dt ss, dt se, dt i, dt diff, dt si);
-        void update(dt i, dt new_val);
-        dt getSum(dt qs, dt qe);
-        dt build(dt ss, dt se, dt *st, dt si);
-        SegmentTree(dt arr_[], dt n_)
+        int *st,*arr,n;
+        int getMid(int s, int e) {  return s + (e -s)/2;  }
+        int getSumUtil(int ss, int se, int qs, int qe, int si);
+        void update_query(int ss, int se, int i, int diff, int si);
+        void update(int i, int new_val);
+        int getSum(int qs, int qe);
+        int build(int ss, int se, int *st, int si);
+        SegmentTree(int arr_[], int n_)
         {
             arr = arr_;
             n = n_;
-            dt x = (dt)(ceil(log2(n))); 
-            dt max_size = 2*(dt)pow(2, x) - 1; 
-            st = new dt[max_size];
+            int x = (int)(ceil(log2(n))); 
+            int max_size = 2*(int)pow(2, x) - 1; 
+            st = new int[max_size];
             build(0, n-1, st, 0);
         }
 
 };
 
 
-dt SegmentTree::getSumUtil(dt ss, dt se, dt qs, dt qe, dt si)
+int SegmentTree::getSumUtil(int ss, int se, int qs, int qe, int si)
 {
     if (qs <= ss && qe >= se)
         return st[si];
@@ -36,12 +36,12 @@ dt SegmentTree::getSumUtil(dt ss, dt se, dt qs, dt qe, dt si)
     if (se < qs || ss > qe)
         return 0;
  
-    dt mid = getMid(ss, se);
+    int mid = getMid(ss, se);
     return getSumUtil(ss, mid, qs, qe, 2*si+1) +
            getSumUtil(mid+1, se, qs, qe, 2*si+2);
 }
  
-void SegmentTree::update_query(dt ss, dt se, dt i, dt diff, dt si)
+void SegmentTree::update_query(int ss, int se, int i, int diff, int si)
 {
     if (i < ss || i > se)
         return;
@@ -49,13 +49,13 @@ void SegmentTree::update_query(dt ss, dt se, dt i, dt diff, dt si)
     st[si] = st[si] + diff;
     if (se != ss)
     {
-        dt mid = getMid(ss, se);
+        int mid = getMid(ss, se);
         update_query(ss, mid, i, diff, 2*si + 1);
         update_query(mid+1, se, i, diff, 2*si + 2);
     }
 }
  
-void SegmentTree::update(dt i, dt new_val)
+void SegmentTree::update(int i, int new_val)
 {
     if (i < 0 || i > n-1)
     {
@@ -63,14 +63,14 @@ void SegmentTree::update(dt i, dt new_val)
         return;
     }
  
-    dt diff = new_val - arr[i];
+    int diff = new_val - arr[i];
  
     arr[i] = new_val;
  
     update_query(0, n-1, i, diff, 0);
 }
  
-dt SegmentTree::getSum(dt qs, dt qe)
+int SegmentTree::getSum(int qs, int qe)
 {
     if (qs < 0 || qe > n-1 || qs > qe)
     {
@@ -80,14 +80,14 @@ dt SegmentTree::getSum(dt qs, dt qe)
     return getSumUtil(0, n-1, qs, qe, 0);
 }
  
-dt SegmentTree::build(dt ss, dt se, dt *st, dt si)
+int SegmentTree::build(int ss, int se, int *st, int si)
 {
     if (ss == se)
     {
         st[si] = arr[ss];
         return arr[ss];
     }
-    dt mid = getMid(ss, se);
+    int mid = getMid(ss, se);
     st[si] =  build(ss, mid, st, si*2+1) +
               build(mid+1, se, st, si*2+2);
     return st[si];

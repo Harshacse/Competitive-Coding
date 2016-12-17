@@ -1,5 +1,5 @@
 /*
-	Team Name : segf
+	Author : Ponnada Harsha Vardhan
 	Institute : IIT Kharagpur
 */
 
@@ -26,26 +26,47 @@
 #define out2(a,b) cout<<a<<" "<<b<<"\n"
 #define FOR(i,a,b) for(i=a;i<b;i++)
 #define REP(i,n) for(i=0;i<n;i++)
+#define MAX 100000
 using namespace std;
+
+vector<int> tree[MAX];	// Adjacency List
+std::vector<int> visited[MAX];
+vector<int> level[MAX];
+
+void DFS(int root)
+{
+	visited[root] = 1;
+	for(int i=0; i<(int)tree[root].size(); ++i)
+	{
+		int v = tree[root][i];
+		if(!visited[v])
+		{
+			level[v] = level[root] + 1;
+			DFS(v);
+		}
+	}
+	return ;
+}
+
+
 
 int main()
 {
-	BOOST;
-	int i,j,l,m;
-	cint(t);
-	int primes[5] = {2,3,5,7,11};
-	while(t--)
+	int N, M;
+	scanf("%d %d", &N, &M);
+	for(int i=0;i<N-1;++i)
 	{
-		cint2(a,n);
-		cint(k);
-		vector<int> data;
-		l;
-		for(i=0;i<32;i++)
-		{
-			for(j=0;j<9log(10)/log(2)+2;j++)
-			{
-				for(k=)
-			}
-		}
+		int u, v;
+		scanf("%d %d", &u, &v);
+		--u, --v;
+		tree[u].push_back(v),
+		tree[v].push_back(u);
 	}
+	for(i=0;i<N;i++)
+	{
+		visited[i] = 0;
+		level[i] = 0;
+	}
+	DFS(0);
+	return 0;
 }
