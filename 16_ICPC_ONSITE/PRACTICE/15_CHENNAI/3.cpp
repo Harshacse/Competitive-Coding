@@ -28,26 +28,6 @@
 #define REP(i,n) for(i=0;i<n;i++)
 using namespace std;
 
-
-vector< int > tree[100010];
-double result = 0;
-
-void dfs(vector <int> &visited, vector<int> dead, int u, int counter)
-{
-	int i,j,k;
-	if(dead[u])
-		counter += 1;
-	for(i=0;i<tree[u].size();i++)
-	{
-		if(visited[tree[u][i]]!=1)
-		{
-			visited[tree[u][i]] = 1;
-			// out2(tree[u][i],counter);
-			result += double(counter)/double(counter+1);
-			dfs(visited,dead,tree[u][i],counter);
-		}
-	}
-}
 int main()
 {
 	BOOST;
@@ -55,34 +35,25 @@ int main()
 	cint(t);
 	while(t--)
 	{
-		result = 0;
-		cint(n);
-		vector<int> dead(n+1);	
-		vector<int> visited(n+1);
-		for(i=0;i<=n;i++)
-		{
-			tree[i].clear();
-			dead[i]=0;
-			visited[i]=0;
-		}
-		for(i=0;i<n-1;i++)
-		{
-			cint2(x,y);
-			tree[x].pb(y);
-			tree[y].pb(x);
-		}
-		cint(m);
-		
-		for(i=0;i<m;i++)
-		{
-			cint(x);
-			dead[x] = 1;
-		}
+		ll a,b,n,temp;
+		cin>>a>>b>>n;
+		int f[7];
+		if(a<0)
+			a += MOD;
+		if(b<0)
+			b += MOD;
+		f[1] = a%MOD;
+		f[2] = b%MOD;
+		f[4] = (MOD-a)%MOD;
+		f[5] = (MOD-b)%MOD;
 
-		// std::vector<int> visited(n+1,0);
-		visited[1] = 1;
-		dfs(visited,dead,1,0);
-
-		printf("%.10f\n", result);
+		if(a>b)
+			temp = (a-b)%MOD;
+		else
+			temp = (MOD+(a-b))%MOD;
+		out(temp);
+		f[0] = temp%MOD;
+		f[3] = (MOD-temp)%MOD;
+		out(f[n%6]);
 	}
 }

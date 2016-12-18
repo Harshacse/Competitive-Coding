@@ -28,25 +28,27 @@
 #define REP(i,n) for(i=0;i<n;i++)
 using namespace std;
 
-
-vector< int > tree[100010];
-double result = 0;
-
-void dfs(vector <int> &visited, vector<int> dead, int u, int counter)
+bool check;
+void check_sum(int a[],int b[],int i)
 {
-	int i,j,k;
-	if(dead[u])
-		counter += 1;
-	for(i=0;i<tree[u].size();i++)
+	if(i==4)
 	{
-		if(visited[tree[u][i]]!=1)
-		{
-			visited[tree[u][i]] = 1;
-			// out2(tree[u][i],counter);
-			result += double(counter)/double(counter+1);
-			dfs(visited,dead,tree[u][i],counter);
-		}
+		int sum = 0;
+		bool temp = false;
+		for(int j=0;j<4;j++)
+			if(b[j])
+			{
+				sum += a[j];
+				temp = true;
+			}
+		if(sum == 0 && temp)
+			check = true;
+		return;
 	}
+	b[i] = 0;
+	check_sum(a,b,i+1);
+	b[i]=1;
+	check_sum(a,b,i+1);
 }
 int main()
 {
@@ -55,34 +57,14 @@ int main()
 	cint(t);
 	while(t--)
 	{
-		result = 0;
-		cint(n);
-		vector<int> dead(n+1);	
-		vector<int> visited(n+1);
-		for(i=0;i<=n;i++)
-		{
-			tree[i].clear();
-			dead[i]=0;
-			visited[i]=0;
-		}
-		for(i=0;i<n-1;i++)
-		{
-			cint2(x,y);
-			tree[x].pb(y);
-			tree[y].pb(x);
-		}
-		cint(m);
-		
-		for(i=0;i<m;i++)
-		{
-			cint(x);
-			dead[x] = 1;
-		}
-
-		// std::vector<int> visited(n+1,0);
-		visited[1] = 1;
-		dfs(visited,dead,1,0);
-
-		printf("%.10f\n", result);
+		int a[4];
+		cin>>a[0]>>a[1]>>a[2]>>a[3];
+		int b[4] = {0};
+		check = false;
+		check_sum(a,b,0);
+		if(check)
+			cout<<"Yes\n";
+		else
+			cout<<"No\n";
 	}
 }

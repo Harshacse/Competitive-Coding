@@ -28,61 +28,27 @@
 #define REP(i,n) for(i=0;i<n;i++)
 using namespace std;
 
-
-vector< int > tree[100010];
-double result = 0;
-
-void dfs(vector <int> &visited, vector<int> dead, int u, int counter)
-{
-	int i,j,k;
-	if(dead[u])
-		counter += 1;
-	for(i=0;i<tree[u].size();i++)
-	{
-		if(visited[tree[u][i]]!=1)
-		{
-			visited[tree[u][i]] = 1;
-			// out2(tree[u][i],counter);
-			result += double(counter)/double(counter+1);
-			dfs(visited,dead,tree[u][i],counter);
-		}
-	}
-}
 int main()
 {
 	BOOST;
 	init_temp;
-	cint(t);
-	while(t--)
+	cint(n);
+	int p[n];
+	for(i=0;i<n;i++)
+		cin>>p[i];
+	int large = 0;
+	cint(m);
+	for(i=0;i<m;i++)
 	{
-		result = 0;
-		cint(n);
-		vector<int> dead(n+1);	
-		vector<int> visited(n+1);
-		for(i=0;i<=n;i++)
-		{
-			tree[i].clear();
-			dead[i]=0;
-			visited[i]=0;
-		}
-		for(i=0;i<n-1;i++)
-		{
-			cint2(x,y);
-			tree[x].pb(y);
-			tree[y].pb(x);
-		}
-		cint(m);
-		
-		for(i=0;i<m;i++)
-		{
-			cint(x);
-			dead[x] = 1;
-		}
-
-		// std::vector<int> visited(n+1,0);
-		visited[1] = 1;
-		dfs(visited,dead,1,0);
-
-		printf("%.10f\n", result);
+		cint(x);
+		large = max(large,x);
 	}
+	int result = MAXINT;
+	for(i=0;i<large;i++)
+		result = min(result,p[i]);
+	out(result);
 }
+
+
+
+
